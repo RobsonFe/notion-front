@@ -68,7 +68,7 @@ export class TablesComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateBook(): void {
+  updateTask(): void {
     console.log('Método updateTasks chamado');
     console.log('ID da Task a ser atualizado:', this.tasksToUpdate.id);
     console.log('Dados da Tasks a ser atualizado:', this.tasksToUpdate);

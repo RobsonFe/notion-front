@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../service/pagination.service';
 import { CommonModule } from '@angular/common';
 import { NotionService } from '../../service/notion.service';
+import { Tasks } from '../../types/tasks.types';
 
 @Component({
   selector: 'app-pagination',
@@ -11,7 +12,7 @@ import { NotionService } from '../../service/notion.service';
   styleUrls: ['./pagination.component.css'],
 })
 export class PaginationComponent implements OnInit {
-  tasks: any[] = [];
+  tasks: Tasks[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
   pageSize: number = 10;
@@ -24,15 +25,17 @@ export class PaginationComponent implements OnInit {
   ngOnInit(): void {
     this.paginationService.currentPage$.subscribe((page) => {
       this.currentPage = page;
-      this.taskService.findAll(page, this.pageSize);
+      this.loadTasks();
     });
   }
 
-  listTasks(page: number, pageSize: number): void {
-    this.taskService.findAll(page - 1, pageSize).subscribe((response: any) => {
-      this.tasks = response.content || [];
-      this.totalPages = response.totalPages;
-    });
+  loadTasks(): void {
+    this.taskService
+      .findAll(this.currentPage, this.pageSize)
+      .subscribe((response) => {
+        this.tasks = response.result || [];
+        this.totalPages = Math.ceil(response.count / this.pageSize);
+      });
   }
 
   goToPage(page: number): void {
