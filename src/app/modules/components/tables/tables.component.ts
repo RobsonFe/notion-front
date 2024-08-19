@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-tables',
