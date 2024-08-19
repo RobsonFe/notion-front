@@ -1,3 +1,22 @@
+<!-- Toast -->
+@if (success) {
+<div
+  class="p-4 text-center text-sm text-green-800 bg-green-50 dark:bg-gray-800 dark:text-green-400"
+  role="alert"
+>
+  <span class="font-medium">Tarefa atualizada com sucesso!</span> Em alguns
+  segundos a tabela será atualizada.
+</div>
+} @if (deletou) {
+<div
+  class="p-4 text-center text-sm text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400"
+  role="alert"
+>
+  <span class="font-medium">Tarefa deletada com sucesso!</span>.
+</div>
+}
+
+<!-- Table -->
 <div class="relative overflow-x-auto shadow-md">
   <table
     class="w-full text-sm py-5 text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -75,3 +94,31 @@
     </tbody>
   </table>
 </div>
+
+<!-- Modal para Editar Livro -->
+<app-modal [isOpen]="isEditModalOpen" (close)="closeEditModal()"> </app-modal>
+
+<!-- Modal para Confirmar Exclusão -->
+<app-modal [isOpen]="isDeleteModalOpen" (close)="closeDeleteModal()">
+  <h2 class="text-xl font-bold">Confirmar Exclusão</h2>
+  <p class="mt-4">
+    Você tem certeza de que deseja excluir o livro "<strong>{{
+      tasksToDelete?.title
+    }}</strong>
+    "?
+  </p>
+  <div class="flex justify-end mt-4">
+    <button
+      (click)="confirmDelete()"
+      class="px-4 py-2 bg-red-500 text-white rounded-lg mr-2"
+    >
+      Excluir
+    </button>
+    <button
+      (click)="closeDeleteModal()"
+      class="px-4 py-2 bg-gray-300 text-black rounded-lg"
+    >
+      Cancelar
+    </button>
+  </div>
+</app-modal>

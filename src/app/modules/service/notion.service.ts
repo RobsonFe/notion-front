@@ -16,6 +16,10 @@ export class NotionService {
     return this.http.post(`${this.apiUrl}/create/`, taskData);
   }
 
+  find(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/buscar/${id}`);
+  }
+
   //Atualizar Task
   update(id: string, taskData: Tasks): Observable<any> {
     return this.http.put(`${this.apiUrl}/atualizar/${id}`, taskData);
