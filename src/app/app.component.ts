@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AppModule, HttpClientModule],
+  imports: [RouterOutlet, AppModule, HttpClientModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [FlowbiteService, NotionService, PaginationService],

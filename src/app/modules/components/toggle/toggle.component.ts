@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-toggle',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.css',
 })

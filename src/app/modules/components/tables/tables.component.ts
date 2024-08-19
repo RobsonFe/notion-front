@@ -3,19 +3,21 @@ import { Subscription } from 'rxjs';
 import { Tasks } from '../../types/tasks.types';
 import { NotionService } from '../../service/notion.service';
 import { PaginationService } from '../../service/pagination.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tables',
   standalone: true,
-  imports: [ModalComponent],
+  imports: [ModalComponent, PaginationComponent, FormsModule, RouterLink],
   templateUrl: './tables.component.html',
   styleUrl: './tables.component.css',
 })
 export class TablesComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  tasks: any[] = [];
+  tasks: Tasks[] = [];
   tasksDetails: Tasks | null = null;
   tasksToUpdate: Tasks = {
     id: '',
@@ -39,7 +41,7 @@ export class TablesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(
       this.paginationService.currentPage$.subscribe((page) => {
-        this.listTasks(page, 5);
+        this.listTasks(page, 10);
       })
     );
 
@@ -54,8 +56,8 @@ export class TablesComponent implements OnInit, OnDestroy {
   }
 
   listTasks(page: number, pageSize: number): void {
-    this.tasksService.findAll(page - 1, pageSize).subscribe((response: any) => {
-      this.tasks = response.content || [];
+    this.tasksService.findAll(page, pageSize).subscribe((response: any) => {
+      this.tasks = response.result || [];
     });
   }
 

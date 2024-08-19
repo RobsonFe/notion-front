@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class NotionService {
-  private apiUrl = '/api/v1/notion/';
+  private apiUrl = 'http://localhost:8080/api/v1/notion';
 
   constructor(private http: HttpClient) {}
 
@@ -31,11 +31,24 @@ export class NotionService {
   }
 
   // Encontrar todas as tasks
-  findAll(page: number, pageSize: number): Observable<any> {
+  findAll(
+    page: number,
+    pageSize: number
+  ): Observable<{
+    result: Tasks[];
+    count: number;
+    page: number;
+    limit: number;
+  }> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('pageSize', pageSize.toString());
 
-    return this.http.get(`${this.apiUrl}/list`, { params });
+    return this.http.get<{
+      result: Tasks[];
+      count: number;
+      page: number;
+      limit: number;
+    }>(`${this.apiUrl}/list`, { params });
   }
 }
