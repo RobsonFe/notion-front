@@ -22,52 +22,59 @@
 <div class="bg-white mx-auto dark:bg-gray-900">
   <form class="max-w-md mx-auto py-5" (ngSubmit)="criarBook()">
     <div class="relative z-0 w-full mb-5 group">
-      <input
-        type="text"
-        name="tarefa"
-        id="tarefa"
-        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        placeholder=" "
-        required
-        [(ngModel)]="newTask.title"
-      />
-      <label
-        for="tarefa"
-        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Tarefa</label
-      >
+      <div class="mb-5">
+        <label
+          for="tarefa"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Tarefa</label
+        >
+        <input
+          type="text"
+          name="tarefa"
+          id="tarefa"
+          required
+          [(ngModel)]="newTask.title"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
     </div>
     <div class="relative z-0 w-full mb-5 group">
-      <input
-        type="text"
-        name="prioridade"
-        id="prioridade"
-        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        placeholder=" "
-        required
+      <label
+        for="priority"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Selecione a Prioridade</label
+      >
+      <select
+        id="priority"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         [(ngModel)]="newTask.priority"
-      />
-      <label
-        for="prioridade"
-        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Prioridade</label
+        name="priority"
+        required
       >
+        <option></option>
+        <option value="Alta">Alta</option>
+        <option value="Baixa">Baixa</option>
+        <option value="Atenção">Atenção</option>
+      </select>
     </div>
     <div class="relative z-0 w-full mb-5 group">
-      <input
-        type="text"
-        name="status"
-        id="status"
-        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        placeholder=" "
-        required
-        [(ngModel)]="newTask.status"
-      />
       <label
-        for="floating_status"
-        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Status</label
+        for="status"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Selecione o Status da Tarefa</label
       >
+      <select
+        id="status"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [(ngModel)]="newTask.status"
+        name="status"
+        required
+      >
+        <option></option>
+        <option value="Não iniciada">Não iniciada</option>
+        <option value="Em andamento">Em andamento</option>
+        <option value="Concluído">Concluído</option>
+      </select>
     </div>
     <div class="flex space-x-4 mt-4">
       <button
@@ -85,6 +92,7 @@
       </button>
     </div>
   </form>
+
   <div class="justify-center text-center mt-5">
     <blockquote
       class="text-xl italic font-semibold text-gray-900 dark:text-white"
