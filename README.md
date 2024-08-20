@@ -1,27 +1,47 @@
-# NotionSpa
+# Notion-Front
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.3.
 
-## Development server
+## Descrição
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este projeto é uma aplicação web desenvolvida em Angular, que permite criar e gerenciar tarefas integrada a uma API em NestJS que a mesma possui uma integração com a API do Notion.
 
-## Code scaffolding
+Todas as tarefas são gerenciadas de forma reativa entre o Angular, API em NestJS e API do Notion. O objetivo desse projeto é demonstrar um serviço de multi-utilidades, onde o usuário pode utilizar o sistema para realizar diversas tarefas no Notion.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Utilizei como base um gerenciamento de tarefas simples, onde o usuário pode criar, editar e excluir tarefas, mas poderia utilizar qualquer funcionalidade do Notion, desde que integrada de forma correta na aplicação.
 
-## Build
+## API em NestJS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+A API em NestJS foi desenvolvida para gerenciar as tarefas do Notion e tambem salvar essas tarefas tanto no banco de dado mongodb quanto em uma planilha de excel.
+<br>
+[Documentação da API NestJS com Notion](https://github.com/RobsonFe/api-notion-todo)
 
-## Running unit tests
+## Instalação e Execução
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Baixe o projeto e instale as dependências com o comando:
 
-## Running end-to-end tests
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Após a instalação das dependências, execute o projeto com o comando:
 
-## Further help
+```bash
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+A aplicação estará disponível em [http://localhost:4200](http://localhost:4200)
+
+## Tecnologias
+
+- Angular 18.1.3
+- Tailwind CSS
+- Flowbite
+
+## Conceitos
+
+A aplicação utiliza os conceitos de Single-Page-Application, onde a aplicação é carregada toda de uma vez e atualizada dinamicamente sem a necessidade de um carregamento, tudo feito de forma dinâmica e integrada.Foi utilizado no projeto os novos conceitos de `controll-flow` do Angular 17+. Utilizei um modulo para assegurar que um unico modulo distribuia as informações para todos os componentes, e assim evitar a sobrecarga de informações no componente.
+
+---
+
+### Autor: **Robson Ferreira.**
