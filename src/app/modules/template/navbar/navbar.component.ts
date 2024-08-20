@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FlowbiteService } from '../../service/flowbite.service';
 import { ToggleComponent } from '../../components/toggle/toggle.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ToggleComponent],
+  imports: [ToggleComponent, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })

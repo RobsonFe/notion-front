@@ -7,12 +7,18 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgForOf } from '@angular/common';
+import { HomeComponent } from '../../home/home.component';
 
 @Component({
   selector: 'app-tables',
   standalone: true,
-  imports: [ModalComponent, PaginationComponent, FormsModule, RouterLink],
+  imports: [
+    ModalComponent,
+    PaginationComponent,
+    FormsModule,
+    RouterLink,
+    HomeComponent,
+  ],
   templateUrl: './tables.component.html',
   styleUrl: './tables.component.css',
 })

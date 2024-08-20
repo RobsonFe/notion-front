@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tasks } from '../types/tasks.types';
 import { Observable, throwError } from 'rxjs';
+import { CreateTasks } from '../types/create.tyes';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class NotionService {
   constructor(private http: HttpClient) {}
 
   // Criar Task
-  create(taskData: Tasks): Observable<any> {
+  create(taskData: CreateTasks): Observable<any> {
     return this.http.post(`${this.apiUrl}/create/`, taskData);
   }
 

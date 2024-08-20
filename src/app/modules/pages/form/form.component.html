@@ -1,5 +1,26 @@
+<app-home />
+
+<!-- Toast -->
+@if (success) {
+<div
+  class="p-4 text-center text-sm text-green-800 bg-green-50 dark:bg-gray-800 dark:text-green-400"
+  role="alert"
+>
+  <span class="font-medium">Tarefa criada com sucesso!</span> Em alguns segundos
+  a tabela será atualizada.
+</div>
+} @if (erro) {
+<div
+  class="p-4 text-center text-sm text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400"
+  role="alert"
+>
+  <span class="font-medium">Erro no formulário!</span>
+</div>
+}
+
+<!-- Formulario -->
 <div class="bg-white mx-auto dark:bg-gray-900">
-  <form class="max-w-md mx-auto py-5">
+  <form class="max-w-md mx-auto py-5" (ngSubmit)="criarBook()">
     <div class="relative z-0 w-full mb-5 group">
       <input
         type="text"
@@ -8,6 +29,7 @@
         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         placeholder=" "
         required
+        [(ngModel)]="newTask.title"
       />
       <label
         for="tarefa"
@@ -23,6 +45,7 @@
         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         placeholder=" "
         required
+        [(ngModel)]="newTask.priority"
       />
       <label
         for="prioridade"
@@ -38,6 +61,7 @@
         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         placeholder=" "
         required
+        [(ngModel)]="newTask.status"
       />
       <label
         for="floating_status"
@@ -45,12 +69,53 @@
         >Status</label
       >
     </div>
-
-    <button
-      type="submit"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Criar Tarefa
-    </button>
+    <div class="flex space-x-4 mt-4">
+      <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Criar Tarefa
+      </button>
+      <button
+        routerLink="/tables"
+        type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        <strong>Lista de Tarefas</strong>
+      </button>
+    </div>
   </form>
+  <div class="justify-center text-center mt-5">
+    <blockquote
+      class="text-xl italic font-semibold text-gray-900 dark:text-white"
+    >
+      <p>
+        "Criação rápida de novas tarefas com títulos, descrições e datas de
+        vencimento Leitura fácil de tarefas existentes, incluindo status,
+        prioridade e etiquetas Atualização em tempo real de tarefas, permitindo
+        que você as marque como concluídas, as atualize ou as exclua conforme
+        necessário Integração completa com o Notion, permitindo que você veja
+        suas tarefas no contexto de outras informações importantes"
+      </p>
+    </blockquote>
+    <figcaption
+      class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse"
+    >
+      <img
+        class="w-6 h-6 rounded-full"
+        src="https://i.imgur.com/thWBSJX.jpg"
+        alt="profile picture"
+      />
+      <div
+        class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700"
+      >
+        <cite class="pe-3 font-medium text-gray-900 dark:text-white"
+          >Robson Ferreira</cite
+        >
+        <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400"
+          >CEO na Fox Hound</cite
+        >
+      </div>
+    </figcaption>
+  </div>
 </div>

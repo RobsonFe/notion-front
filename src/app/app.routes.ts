@@ -8,5 +8,5 @@ export const routes: Routes = [
   { path: 'greetings', component: GreetingsComponent },
   { path: 'tables', component: TablesComponent },
   { path: 'tables/:id', component: TablesComponent },
-  { path: 'form', component: FormComponent },
+  { path: 'create', component: FormComponent },
 ];
