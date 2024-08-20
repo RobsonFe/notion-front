@@ -7,6 +7,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-tables',
@@ -20,7 +21,7 @@ export class TablesComponent implements OnInit, OnDestroy {
   tasks: Tasks[] = [];
   tasksDetails: Tasks | null = null;
   tasksToUpdate: Tasks = {
-    id: '',
+    _id: '',
     title: '',
     status: '',
     priority: '',
@@ -70,18 +71,18 @@ export class TablesComponent implements OnInit, OnDestroy {
 
   updateTask(): void {
     console.log('Método updateTasks chamado');
-    console.log('ID da Task a ser atualizado:', this.tasksToUpdate.id);
+    console.log('ID da Task a ser atualizado:', this.tasksToUpdate._id);
     console.log('Dados da Tasks a ser atualizado:', this.tasksToUpdate);
-    if (this.tasksToUpdate) {
+    if (this.tasksToUpdate._id) {
       console.log('Atualizando livro com:', this.tasksToUpdate);
       this.tasksService
-        .update(this.tasksToUpdate.id, this.tasksToUpdate)
+        .update(this.tasksToUpdate._id, this.tasksToUpdate)
         .subscribe(
           (response) => {
             console.log('Resposta da atualização:', response);
             this.success = true;
             this.listTasks(1, 10);
-            this.loadTasksDetails(this.tasksToUpdate.id);
+            this.loadTasksDetails(this.tasksToUpdate._id);
             this.closeEditModal();
             setTimeout(() => (this.success = false), 3000);
           },
@@ -94,20 +95,23 @@ export class TablesComponent implements OnInit, OnDestroy {
   }
 
   confirmDelete(): void {
-    if (this.tasksToDelete) {
-      this.tasksService.delete(this.tasksToDelete.id).subscribe(
+    console.log('Tarefa a ser removida:', this.tasksToDelete);
+    if (this.tasksToDelete && this.tasksToDelete._id) {
+      this.tasksService.delete(this.tasksToDelete._id).subscribe(
         () => {
           this.deletou = true;
-          console.log('Livro removido com sucesso!');
+          console.log('Tarefa removida com sucesso!');
           this.listTasks(1, 10); // Recarregar a lista após remoção
           this.closeDeleteModal();
           setTimeout(() => (this.deletou = false), 3000);
         },
         (error) => {
-          this.error = 'Erro ao remover o livro';
-          console.error('Erro ao remover o livro:', error);
+          this.error = 'Erro ao remover a tarefa';
+          console.error('Erro ao remover a tarefa:', error);
         }
       );
+    } else {
+      console.error('ID da tarefa é inválido ou não definido');
     }
   }
 
@@ -121,7 +125,7 @@ export class TablesComponent implements OnInit, OnDestroy {
   }
 
   openDeleteModal(tasks: Tasks): void {
-    this.tasksToDelete = tasks;
+    this.tasksToDelete = { ...tasks };
     this.isDeleteModalOpen = true;
   }
 

@@ -30,22 +30,20 @@
           </a>
         </li>
         <!-- Page Numbers -->
-        @for (page of [].constructor(totalPages); track page; let i = $index) {
-        <li>
+        <li *ngFor="let page of pageNumbers">
           <a
-            (click)="goToPage(i + 1)"
+            (click)="goToPage(page)"
             [ngClass]="{
               'bg-custom text-gray-900 dark:text-white border-custom':
-                i + 1 === currentPage,
+                page === currentPage,
               'text-gray-500 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white':
-                i + 1 !== currentPage
+                page !== currentPage
             }"
             class="flex items-center justify-center px-4 h-10 leading-tight border border-gray-300 dark:border-gray-700 cursor-pointer"
           >
-            {{ i + 1 }}
+            {{ page }}
           </a>
         </li>
-        }
         <!-- Next Button -->
         <li>
           <a

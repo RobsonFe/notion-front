@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../service/pagination.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor, NgForOf } from '@angular/common';
 import { NotionService } from '../../service/notion.service';
 import { Tasks } from '../../types/tasks.types';
 
 @Component({
   selector: 'app-pagination',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgFor, NgForOf],
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css'],
 })
@@ -16,6 +16,7 @@ export class PaginationComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 1;
   pageSize: number = 10;
+  pageNumbers: number[] = [];
 
   constructor(
     private paginationService: PaginationService,
@@ -35,6 +36,10 @@ export class PaginationComponent implements OnInit {
       .subscribe((response) => {
         this.tasks = response.result || [];
         this.totalPages = Math.ceil(response.count / this.pageSize);
+        this.pageNumbers = Array.from(
+          { length: this.totalPages },
+          (_, i) => i + 1
+        );
       });
   }
 

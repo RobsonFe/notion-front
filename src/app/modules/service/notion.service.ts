@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tasks } from '../types/tasks.types';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,11 +22,13 @@ export class NotionService {
 
   //Atualizar Task
   update(id: string, taskData: Tasks): Observable<any> {
+    console.log('ID para atualizar:', id); // Verifique o ID
     return this.http.put(`${this.apiUrl}/atualizar/${id}`, taskData);
   }
 
   // Deletar Task
   delete(id: string): Observable<any> {
+    console.log('ID para deletar:', id); // Verifique o ID
     return this.http.delete(`${this.apiUrl}/delete-task/${id}`);
   }
 
