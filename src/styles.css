@@ -4,5 +4,5 @@
 @tailwind utilities;
 
 * {
-  background-color: "#f8f9fa";
+  background-color: "#f8f9fa" !important;
 }
